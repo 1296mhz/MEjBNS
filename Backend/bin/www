@@ -1,0 +1,141 @@
+#!/usr/bin/env node
+
+var cluster = require('cluster');
+//Количество ядер процессора
+var cpuCount = require('os').cpus().length;
+var io = [];
+var workers = [];
+//В мастере создаем worker'ов равное количеству ядер процессоров
+if (cluster.isMaster) {
+    for (var i = 0; i < cpuCount; i += 1) {
+        var worker = cluster.fork();
+
+        //Слушаем сообщение от workera
+        worker.on('message', function (data) {
+            //отправляем всем worker'ам сообщение
+            for (var j in workers) {
+                workers[j].send(data);
+            }
+        });
+
+        //Добавляем объект worker в массив
+        workers.push(worker);
+    }
+}
+
+//В воркере
+if (cluster.isWorker) {
+    var worker_id = cluster.worker.id;
+
+    /**
+     * Module dependencies.
+     */
+
+    var app = require('../Backend/app');
+
+    var debug = require('debug')('express-authentication:server');
+    var http = require('http');
+
+    /**
+     * Get port from environment and store in Express.
+     */
+
+    var port = normalizePort(process.env.PORT || '3000');
+    app.set('port', port);
+
+    /**
+     * Create HTTP server.
+     */
+
+    var server = http.createServer(app);
+    io[worker_id] = require('socket.io')(server);
+    server.listen(3030 + worker_id);
+
+    io[worker_id].on('connection', function (socket) {
+        console.log(socket.id);
+        console.log("WORKER ID :" + worker_id);
+        socket.on('getClients', function () {
+            console.log("get Clients FIRE!")
+            socket.emit('clients', {message: "Client's list"});
+        });
+
+        var counter = 0;
+        var min = 999;
+        var max = 100000;
+
+        setInterval(function () {
+            counter = Math.floor(Math.random() * (max - min)) + min;
+            socket.emit('webTraffic', {count: counter, bar: [0, 4, 3, 4, 6, 7]})
+        }, 500)
+    });
+
+    /**
+     * Listen on provided port, on all network interfaces.
+     */
+
+    server.listen(port);
+    server.on('error', onError);
+    server.on('listening', onListening);
+
+    /**
+     * Normalize a port into a number, string, or false.
+     */
+
+    function normalizePort(val) {
+        var port = parseInt(val, 10);
+
+        if (isNaN(port)) {
+            // named pipe
+            return val;
+        }
+
+        if (port >= 0) {
+            // port number
+            return port;
+        }
+
+        return false;
+    }
+
+    /**
+     * Event listener for HTTP server "error" event.
+     */
+
+    function onError(error) {
+        if (error.syscall !== 'listen') {
+            throw error;
+        }
+
+        var bind = typeof port === 'string'
+            ? 'Pipe ' + port
+            : 'Port ' + port;
+
+        // handle specific listen errors with friendly messages
+        switch (error.code) {
+            case 'EACCES':
+                console.error(bind + ' requires elevated privileges');
+                process.exit(1);
+                break;
+            case 'EADDRINUSE':
+                console.error(bind + ' is already in use');
+                process.exit(1);
+                break;
+            default:
+                throw error;
+        }
+    }
+
+    /**
+     * Event listener for HTTP server "listening" event.
+     */
+
+    function onListening() {
+        var addr = server.address();
+        var bind = typeof addr === 'string'
+            ? 'pipe ' + addr
+            : 'port ' + addr.port;
+        debug('Listening on ' + bind);
+    }
+
+}
+
