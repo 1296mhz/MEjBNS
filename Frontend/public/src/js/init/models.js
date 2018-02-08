@@ -7,11 +7,13 @@ define([
     'backbone',
     'NavbarModel',
     'LeftSidebarModel',
+    'LeftSidebarMenuItemModel',
     'UserInfoModel',
     'LeftSidebarFooter'
 ], function ($, _, Backbone,
              NavbarModel,
              LeftSidebarModel,
+             LeftSidebarMenuItemModel,
              UserInfoModel,
              LeftSidebarFooter
 ) {
@@ -20,6 +22,7 @@ define([
         app.models.NavbarModel = new NavbarModel();
         app.models.leftMenu = new LeftSidebarModel();
         app.models.UserInfoModel = new UserInfoModel();
+        app.models.LeftSidebarMenuItemModel = new LeftSidebarMenuItemModel();
         app.models.LeftSidebarFooter = new LeftSidebarFooter();
     }
     return {

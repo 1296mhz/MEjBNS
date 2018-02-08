@@ -33,7 +33,11 @@ io.on('connection', function (socket) {
 
     setInterval(function () {
         counter = Math.floor(Math.random() * (max - min)) + min;
-        socket.emit('webTraffic', {count: counter, bar: [0, 4, 3, 4, 6, 7]})
+        var i1 = counter/100
+            var i2 = counter/200
+                var i3 = counter/300
+                    var i4 = counter/400
+        socket.emit('webTraffic', {count: counter, bar: [i1, i2, i3 ,i4 ]})
     }, 500)
 });
 

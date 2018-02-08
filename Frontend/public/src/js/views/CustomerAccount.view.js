@@ -21,13 +21,10 @@ define(['jquery', 'underscore', 'backbone',  'text!CustomerAccountTemplate', 'Ad
                 console.log("Fetch from profile model");
                 this.model.fetch();
             },
-
             render: function () {
                 var compiledTemplate = _.template(CustomerAccountTemplate);
                 this.$el.empty();
-                //this.model.toJSON()
                 this.$el.append(compiledTemplate());
-
             },
             show: function(){
                 this.$el.removeClass();

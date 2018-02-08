@@ -73,12 +73,12 @@ define(['jquery', 'waves', 'jquery-slimscroll'], function ($, Waves) {
             $.each($('.menu-toggle.toggled'), function (i, val) {
                 $(val).next().slideToggle(0);
             });
-            
 
             app.bus.on('LeftSidebarView:changeUrl', function(data){
-                var $menuList = $('#leftsidebar-menu').children();
-               $menuList.removeClass();
-                $('#' + data).addClass('active');
+                console.log(data)
+                var $menuList = $('#left-sidebar-menu').children();
+               // $menuList.removeClass();
+               //  $('#' + data).addClass('active');
             });
 
             // $menuList.on('click', function(e){
@@ -89,7 +89,6 @@ define(['jquery', 'waves', 'jquery-slimscroll'], function ($, Waves) {
             //When page load
             $.each($('.menu .list li.active'), function (i, val) {
                 var $activeAnchors = $(val).find('a:eq(0)');
-
                 $activeAnchors.addClass('toggled');
                 $activeAnchors.next().show();
             });

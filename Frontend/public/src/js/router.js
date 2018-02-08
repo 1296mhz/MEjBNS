@@ -19,7 +19,7 @@ define([
     'use strict';
     var MainRouter = Backbone.Router.extend({
         initialize: function(){
-            console.log("Router initialize")
+            console.log("Router initialize");
         },
         routes: {
             '': 'index',
@@ -31,34 +31,34 @@ define([
         },
         index: function () {
             this.navigate('', { trigger: true });
-            app.bus.trigger('LeftSidebarView:changeUrl', 'dashboardid')
-            $('content-section').children().removeClass()
-            $('content-section').children().addClass('section-hide')
+            app.bus.trigger('LeftSidebarView:changeUrl', 'dashboardid');
+            $('content-section').children().removeClass();
+            $('content-section').children().addClass('section-hide');
             app.views.DashboardView.render();
             app.views.DashboardView.show();
-
         },
         dashboard: function () {
             this.navigate('dashboard', { trigger: true });
-            app.bus.trigger('LeftSidebarView:changeUrl', 'dashboardid')
-            $('content-section').children().removeClass()
-            $('content-section').children().addClass('section-hide')
+            app.bus.trigger('LeftSidebarView:changeUrl', 'dashboardid');
+            $('content-section').children().removeClass();
+            $('content-section').children().addClass('section-hide');
             app.views.DashboardView.render();
             app.views.DashboardView.show();
         },
         profile: function () {
+
             this.navigate('profile', { trigger: true });
-            app.bus.trigger('LeftSidebarView:changeUrl', 'profileid')
-            $('content-section').children().removeClass()
-            $('content-section').children().addClass('section-hide')
+            app.bus.trigger('LeftSidebarView:changeUrl', 'profileid');
+            $('content-section').children().removeClass();
+            $('content-section').children().addClass('section-hide');
             app.views.ProfileView.render();
             app.views.ProfileView.show();
         },
-        customerAccount: function(){
+        customerAccount: function() {
             this.navigate('customer-account', { trigger: true });
-            app.bus.trigger('LeftSidebarView:changeUrl', 'customeraccountsid')
-            $('content-section').children().removeClass()
-            $('content-section').children().addClass('section-hide')
+            app.bus.trigger('LeftSidebarView:changeUrl', 'customeraccountsid');
+            $('content-section').children().removeClass();
+            $('content-section').children().addClass('section-hide');
             app.views.CustomerAccountView.render();
             app.views.CustomerAccountView.show();
         }

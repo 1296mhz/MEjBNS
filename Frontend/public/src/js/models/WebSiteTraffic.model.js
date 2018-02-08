@@ -13,8 +13,6 @@ define(['underscore','backbone'], function(_, Backbone){
             count: 0,
             name: "WEBSITE TRAFFICS"
         }
-
-    })
-
+    });
     return WebSiteTrafficModel
 })

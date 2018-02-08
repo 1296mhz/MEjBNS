@@ -44,6 +44,8 @@ if (cluster.isWorker) {
     var worker_id = cluster.worker.id;
     var express = require('express');
     var url = require('url');
+
+
     var appSocket = express();
     var serverSocket = require('http').Server(appSocket);
     io[worker_id] = require('socket.io')(serverSocket);
@@ -56,13 +58,19 @@ if (cluster.isWorker) {
         });
 
         var counter = 0;
-        var min = 999;
-        var max = 100000;
+        var min = 1;
+        var max = 10;
 
         setInterval(function () {
             counter = Math.floor(Math.random() * (max - min)) + min;
-            socket.emit('webTraffic', {count: counter, bar: [0, 4, 3, 4, 6, 7]})
-        }, 500)
+            var i1 = Math.floor(Math.random() * (max - min)) + min;
+            var i2 = Math.floor(Math.random() * (max - min)) + min;
+            var i3 = Math.floor(Math.random() * (max - min)) + min;
+            var i4 = Math.floor(Math.random() * (max - min)) + min;
+            var i5 = Math.floor(Math.random() * (max - min)) + min;
+            var i6 = Math.floor(Math.random() * (max - min)) + min;
+            socket.emit('webTraffic', {count: counter, bar: [i1, i2, i3 ,i4, i5, i6 ]})
+        }, 1000)
     });
 
     var app = express();
@@ -73,7 +81,7 @@ if (cluster.isWorker) {
     app.set('view engine', 'ejs');
     app.disable('x-powered-by');
     //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-    app.use(logger('combined'));
+    // app.use(logger('combined'));
     app.use(bodyParser.json({limit: '5mb'}));
     app.use(bodyParser.urlencoded({limit: '5mb', extended: false}));
     app.use(cookieParser());
@@ -94,6 +102,7 @@ if (cluster.isWorker) {
 
    require('./Backend/modules/passport')(passport);
 
+   app.use(require('./Backend/modules/webTrafficCounter'))
     app.get('/getPort', function (req, res) {
 
         console.log('get_port');
@@ -110,8 +119,6 @@ if (cluster.isWorker) {
         var port = parseInt(query.port);
 
         var JSON_DATA = {"worker_id": worker_id, "id": id, "msg": msg, "port":port}
-
-        // io[port - 3030].to(msg.id).emit('news', msg.msg);
 
         io[worker_id].to(msg.id).emit('news', msg.msg);
 

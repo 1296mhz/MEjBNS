@@ -6,6 +6,7 @@ define([
     'underscore',
     'backbone',
     'ModelsInit',
+    'CollectionsInit',
     'ViewsInit',
     'AppSandbox',
     'AdminBSB-Admin',
@@ -13,15 +14,18 @@ define([
     'SocketioService'
 ], function ($, _, Backbone,
              ModelsInit,
+             CollectionsInit,
              ViewsInit,
              AppSandbox, AdminBSBAdmin, Router, SocketioService) {
     var initialize = function () {
+
         console.log("Dmitry Zyrjanov.\n");
         console.log("email: cshlovjah@gmail.com\n");
         console.log("phone: +7-(982)-630-24-45\n");
 
         Promise.all([
             ModelsInit.initialize(),
+            CollectionsInit.initialize(),
             ViewsInit.initialize(),
             SocketioService.initialize(),
         ]).then(()=>{

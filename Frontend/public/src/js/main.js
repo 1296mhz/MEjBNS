@@ -22,13 +22,14 @@ require.config({
         "jquery-sparkline": "framework/plugins/jquery-sparkline/jquery.sparkline",
         "bootstrap-notify": "framework/plugins/bootstrap-notify/bootstrap-notify",
         "jquery-countTo": "framework/plugins/jquery-countto/jquery.countTo",
-        "backbone-model-file-upload":"framework/bower_components/backbone-model-file-upload/backbone-model-file-upload",
+        "backbone-model-file-upload": "framework/bower_components/backbone-model-file-upload/backbone-model-file-upload",
         "AdminBSB-Admin": "framework/adminbsb/admin",
         "AdminBSB-Demo": "framework/adminbsb/demo",
 
         //Application
         "app": "app",
         "ModelsInit": "init/models",
+        "CollectionsInit": "init/collections",
         "ViewsInit": "init/views",
         "router": "router",
         // "myAppRouter": "routers/myApp",
@@ -37,24 +38,57 @@ require.config({
         // "AuthenticateService": "services/Authenticate.service",
         "SocketioService": "services/Socketio.service",
 
-        //Models
-        "LeftSidebarModel": "models/LeftSidebar.model",
-        "LeftSidebarFooter": "models/LeftSidebarFooter.model",
-        "UserInfoModel": "models/UserInfo.model",
-        "NavbarModel": "models/Navbar.model",
-        "AvatarFileModel":"models/AvatarFile.model",
-        "DashboardModel":"models/Dashboard.model",
-        "WebSiteTrafficModel":"models/WebSiteTraffic.model",
-        
-        //Collections
-
+        //Start --- Index
         //Views
         "IndexView": "views/containerApplication/Index.view",
+
+        //Templates
+        "IndexTemplate": "views/templates/index.html",
+        //End --- Index
+
+        //Start --- Navbar
+        //Models
+        "NavbarModel": "models/Navbar.model",
+        //Views
         "NavbarView": "views/containerApplication/Navbar.view",
+        //Templates
+        "NavbarTemplate": "views/templates/navbar.html",
+        //End -- Navbar
+
+        //Start --- Left Sidebar
+        //Models
+        "LeftSidebarModel": "models/LeftSidebar.model",
+        "UserInfoModel": "models/UserInfo.model",
+        "LeftSidebarMenuItemModel": "models/LeftSidebarMenuItem.model",
+        "LeftSidebarFooter": "models/LeftSidebarFooter.model",
+
+        //Collections
+        "LeftSidebarMenuCollection": "collections/LeftSidebarMenu.collection",
+
+        //Views
         "LeftSidebarView": "views/containerApplication/LeftSidebar.view",
-        "LeftSidebarFooterView": "views/containerApplication/LeftSidebarFooter.view",
         "UserInfoView": "views/containerApplication/UserInfo.view",
+        "LeftSidebarMenuView": "views/containerApplication/LeftSidebarMenu.view",
+        "LeftSidebarMenuItemView": "views/containerApplication/LeftSidebarMenuItem.view",
+        "LeftSidebarFooterView": "views/containerApplication/LeftSidebarFooter.view",
+
+        //Templates
+        "LeftSidebarTemplate": "views/templates/left-side-bar.html",
+        "UserInfoTemplate": "views/templates/user-info.html",
+        "LeftSidebarMenuTemplate": "views/templates/left-sidebar-menu.html",
+        "LeftSidebarMenuItemTemplate": "views/templates/containerApplication/left-side-bar-menu-item.html",
+        "LeftSideBarFooterTemplate": "views/templates/left-side-bar-footer.html",
+        //End -- Left Sidebar
+
+
+        "AvatarFileModel": "models/AvatarFile.model",
+        "DashboardModel": "models/Dashboard.model",
+        "WebSiteTrafficModel": "models/WebSiteTraffic.model",
+
+        //Right sidebar panel
         "RightSidebarView": "views/containerApplication/RightSidebar.view",
+
+        //Work area
         "DashboardView": "views/Dashboard.view",
         "ProfileView": "views/Profile.view",
         "CustomerAccountView": "views/CustomerAccount.view",
@@ -64,20 +98,14 @@ require.config({
         "WebSiteTrafficView": "views/widgets/WebSiteTraffic.view",
 
         //Templates
-        "IndexTemplate": "views/templates/index.html",
-        "NavbarTemplate": "views/templates/navbar.html",
-        "LeftSidebarTemplate":"views/templates/left-side-bar.html",
-        "LeftSidebarMenuItemTemplate":"views/templates/left-side-bar-menu-item.html",
-        "LeftSideBarFooterTemplate": "views/templates/left-side-bar-footer.html",
-        "UserInfoTemplate":"views/templates/user-info.html",
-        "RightSidebarTemplate":"views/templates/rightsidebar.html",
+        "RightSidebarTemplate": "views/templates/rightsidebar.html",
         "SignInTemplate": "views/templates/sign-in.html",
         "SignUpTemplate": "views/templates/sign-up.html",
         "LogoutTemplate": "views/templates/logout.html",
         "DashboardTemplate": "views/templates/dashboard.html",
         "ProfileTemplate": "views/templates/profile.html",
         "CustomerAccountTemplate": "views/templates/customer-account.html",
-        "NotifyTemplate":"views/templates/notify.html",
+        "NotifyTemplate": "views/templates/notify.html",
 
         //Tempaltes widgets
         "WebSiteTrafficTemplate": "views/templates/widgets/web-site-traffic.html"
@@ -91,7 +119,7 @@ require.config({
 require([
     // Load our app module and pass it to our definition function
     'app',
-], function(App){
+], function (App) {
     console.log("App init");
     App.initialize();
 });

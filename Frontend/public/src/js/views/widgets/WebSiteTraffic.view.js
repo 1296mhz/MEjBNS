@@ -20,7 +20,7 @@ define(['jquery','underscore', 'backbone', 'WebSiteTrafficModel', 'text!WebSiteT
                 this.model.fetch();
             },
             setModel: function(data){
-                this.model.set({ count: data.count })
+                this.model.set({ count: data.count, bar: data.bar })
             },
             render: function () {
                 var compiledTemplate = _.template(WebSiteTrafficTemplate);
@@ -35,8 +35,6 @@ define(['jquery','underscore', 'backbone', 'WebSiteTrafficModel', 'text!WebSiteT
                     height: '34px'
                 });
             }
-
         });
         return WebSiteTrafficView
-
 });
