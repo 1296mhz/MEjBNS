@@ -7,6 +7,7 @@ define(['underscore','backbone', 'LeftSidebarMenuItemModel' ], function(_, Backb
         initialize: function(){
             console.log("Initialize Leftsidebar collection")
         },
+        url: "/api/v1/getLeftMenu",
         model: LeftSidebarMenuItemModel
     });
 

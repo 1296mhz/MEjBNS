@@ -6,14 +6,19 @@ var passport = require('passport');
 var routerApiV1 = express.Router();
 var profileCtrlApi = require('../controllers/apiV1/profile');
 var accountCtrlApi = require('../controllers/apiV1/account');
+var getLeftMenu = require('../controllers/apiV1/leftMenu/getLeftMenuItems');
 
 
-routerApiV1.get('/', isLoggedIn, function( req,res, next){
+
+routerApiV1.get('/', isLoggedIn, function( req, res, next){
     "use strict";
     res.json({
         message: "Welcome to api"
     })
 });
+
+//LeftSidebarMenu
+routerApiV1.get('/getLeftMenu', isLoggedIn, getLeftMenu);
 
 //Profile routes
 routerApiV1.get('/profile', isLoggedIn, profileCtrlApi.getProfile);

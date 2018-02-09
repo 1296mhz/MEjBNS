@@ -7,30 +7,10 @@ define([
     'backbone',
     'LeftSidebarMenuCollection'
 ], function ($, _, Backbone,
-             LeftSidebarMenuCollection
-) {
+             LeftSidebarMenuCollection) {
     var initialize = function () {
         console.log("Init collections");
-        app.collections.LeftSidebarMenuCollection = new LeftSidebarMenuCollection([
-            {
-                id: "dashboardid",
-                href: "#dashboard",
-                icon: "dashboard",
-                name: "Dashboard"
-            },
-            {
-                id: "profileid",
-                href: "#profile",
-                icon: "face",
-                name: "My profile"
-            },
-            {
-                id: "customeraccountsid",
-                href: "#customer-account",
-                icon: "account_box",
-                name: "Customer Accounts"
-            }
-        ]);
+        app.collections.LeftSidebarMenuCollection = new LeftSidebarMenuCollection()
     }
     return {
         initialize: initialize

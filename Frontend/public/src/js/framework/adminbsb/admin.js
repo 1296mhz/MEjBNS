@@ -80,11 +80,6 @@ define(['jquery', 'waves', 'jquery-slimscroll'], function ($, Waves) {
                // $menuList.removeClass();
                //  $('#' + data).addClass('active');
             });
-
-            // $menuList.on('click', function(e){
-            //     $menuList.removeClass();
-            //     $(this).addClass('active');
-            // });
             
             //When page load
             $.each($('.menu .list li.active'), function (i, val) {

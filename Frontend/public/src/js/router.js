@@ -31,7 +31,7 @@ define([
         },
         index: function () {
             this.navigate('', { trigger: true });
-            app.bus.trigger('LeftSidebarView:changeUrl', 'dashboardid');
+            app.bus.trigger('LeftSidebarView:changeUrl', this.routes[Backbone.history.getFragment()]);
             $('content-section').children().removeClass();
             $('content-section').children().addClass('section-hide');
             app.views.DashboardView.render();
@@ -39,16 +39,15 @@ define([
         },
         dashboard: function () {
             this.navigate('dashboard', { trigger: true });
-            app.bus.trigger('LeftSidebarView:changeUrl', 'dashboardid');
+            app.bus.trigger('LeftSidebarView:changeUrl', this.routes[Backbone.history.getFragment()]);
             $('content-section').children().removeClass();
             $('content-section').children().addClass('section-hide');
             app.views.DashboardView.render();
             app.views.DashboardView.show();
         },
         profile: function () {
-
             this.navigate('profile', { trigger: true });
-            app.bus.trigger('LeftSidebarView:changeUrl', 'profileid');
+            app.bus.trigger('LeftSidebarView:changeUrl', this.routes[Backbone.history.getFragment()]);
             $('content-section').children().removeClass();
             $('content-section').children().addClass('section-hide');
             app.views.ProfileView.render();
@@ -56,7 +55,7 @@ define([
         },
         customerAccount: function() {
             this.navigate('customer-account', { trigger: true });
-            app.bus.trigger('LeftSidebarView:changeUrl', 'customeraccountsid');
+            app.bus.trigger('LeftSidebarView:changeUrl', this.routes[Backbone.history.getFragment()]);
             $('content-section').children().removeClass();
             $('content-section').children().addClass('section-hide');
             app.views.CustomerAccountView.render();

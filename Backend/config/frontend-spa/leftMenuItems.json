@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "id": "dashboard-id",
+      "href": "#dashboard",
+      "icon": "dashboard",
+      "name": "Dashboard"
+    },
+    {
+      "id": "profile-id",
+      "href": "#profile",
+      "icon": "face",
+      "name": "My profile"
+    },
+    {
+      "id": "customerAccount-id",
+      "href": "#customer-account",
+      "icon": "account_box",
+      "name": "Customer Accounts"
+    }
+  ]
+}
