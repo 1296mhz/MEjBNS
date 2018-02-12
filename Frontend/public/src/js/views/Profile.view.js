@@ -7,6 +7,7 @@ define(['jquery', 'underscore', 'backbone', 'UserInfoModel', 'AvatarFileModel', 
         var ProfileView = Backbone.View.extend({
             initialize: function () {
                 console.log("Initialize Profile view");
+
                 _.bindAll(this, 'render','fetchModel', 'updateForm', 'saveFieldProfile');
                 this.listenTo(this.model, 'change', this.render);
                 app.bus.on('ProfileView:fetchModel', this.fetchModel);
@@ -91,12 +92,15 @@ define(['jquery', 'underscore', 'backbone', 'UserInfoModel', 'AvatarFileModel', 
                 })
             },
             render: function () {
+
                 var compiledTemplate = _.template(ProfileTemplate);
                 this.$el.empty();
                 this.$el.append(compiledTemplate(this.model.toJSON()));
                 this.updateForm();
             },
             show: function(){
+                $('content-section').children().removeClass();
+                $('content-section').children().addClass('section-hide');
                 this.$el.removeClass();
             },
             updateForm: function () {

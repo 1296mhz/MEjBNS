@@ -27,6 +27,8 @@ define(['jquery', 'underscore', 'backbone',  'text!CustomerAccountTemplate', 'Ad
                 this.$el.append(compiledTemplate());
             },
             show: function(){
+                $('content-section').children().removeClass();
+                $('content-section').children().addClass('section-hide');
                 this.$el.removeClass();
             },
             updateForm: function () {

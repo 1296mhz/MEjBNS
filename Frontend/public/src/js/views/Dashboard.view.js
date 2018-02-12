@@ -33,6 +33,8 @@ define(['jquery', 'underscore', 'backbone',
                 app.views.widgets.WebSiteTrafficView = new WebSiteTrafficView({ el: $('web-site-traffic')});
             },
             show: function () {
+                $('content-section').children().removeClass();
+                $('content-section').children().addClass('section-hide');
                 this.$el.removeClass();
                 app.views.widgets.WebSiteTrafficView.render();
             },
