@@ -2,10 +2,8 @@
  * Created by cshlovjah on 03.01.18.
  */
 require.config({
-    //baseUrl: "src/app/",
     "paths": {
-        //Framework
-        // "jquery": 'framework/bower_components/jquery/dist/jquery.min',
+        //Library
         "jquery": "framework/plugins/jquery/jquery",
         "underscore": "framework/bower_components/underscore/underscore-min",
         "backbone": "framework/bower_components/backbone/backbone-min",
@@ -32,82 +30,63 @@ require.config({
         "CollectionsInit": "init/collections",
         "ViewsInit": "init/views",
         "router": "router",
-        // "myAppRouter": "routers/myApp",
 
         //Services
-        // "AuthenticateService": "services/Authenticate.service",
         "SocketioService": "services/Socketio.service",
-        //Start --- Index
-        //Views
+
+        //Index
         "IndexView": "components/Index/Index.view",
-
-        //Templates
         "IndexTemplate": "components/Index/index.html",
-        //End --- Index
-
-        //Start --- Navbar
-        //Models
         "NavbarModel": "components/Index/Navbar.model",
-        //Views
         "NavbarView": "components/Index/Navbar.view",
-        //Templates
         "NavbarTemplate": "components/Index/navbar.html",
-        //End -- Navbar
+        "NotifyView": "components/Index/Notify.view",
+        "NotifyTemplate": "components/Index/notify.html",
+        //Index
 
-        //Start --- Left Sidebar
-        //Models
+        //LeftSidebar
         "LeftSidebarModel": "components/LeftSideBar/LeftSidebar.model",
         "UserInfoModel": "components/LeftSideBar/UserInfo.model",
         "LeftSidebarMenuItemModel": "components/LeftSideBar/LeftSidebarMenuItem.model",
         "LeftSidebarFooter": "components/LeftSideBar/LeftSidebarFooter.model",
-
-        //Collections
         "LeftSidebarMenuCollection": "components/LeftSideBar/LeftSidebarMenu.collection",
-
-        //Views
         "LeftSidebarView": "components/LeftSideBar/LeftSidebar.view",
         "UserInfoView": "components/LeftSideBar/UserInfo.view",
         "LeftSidebarMenuView": "components/LeftSideBar/LeftSidebarMenu.view",
         "LeftSidebarMenuItemView": "components/LeftSideBar/LeftSidebarMenuItem.view",
         "LeftSidebarFooterView": "components/LeftSideBar/LeftSidebarFooter.view",
-
-        //Templates
         "LeftSidebarTemplate": "components/LeftSideBar/left-side-bar.html",
         "UserInfoTemplate": "components/LeftSideBar/user-info.html",
         "LeftSidebarMenuTemplate": "components/LeftSideBar/left-sidebar-menu.html",
         "LeftSidebarMenuItemTemplate": "components/LeftSideBar/left-side-bar-menu-item.html",
         "LeftSideBarFooterTemplate": "components/LeftSideBar/left-side-bar-footer.html",
-        //End -- Left Sidebar
+        //LeftSidebar
 
+        //RightSidebar
+        "RightSidebarView": "components/RightSideBar/RightSidebar.view",
+        "RightSidebarTemplate": "components/RightSideBar/rightsidebar.html",
+        //RightSidebar
 
+        //Dashboard
         "AvatarFileModel": "components/Profile/AvatarFile.model",
         "DashboardModel": "components/Dashboard/Dashboard.model",
-        "WebSiteTrafficModel": "components/Dashboard/WebSiteTraffic.model",
-
-        //Right sidebar panel
-        "RightSidebarView": "components/RightSideBar/RightSidebar.view",
-
-        //Work area
         "DashboardView": "components/Dashboard/Dashboard.view",
-        "ProfileView": "components/Profile/Profile.view",
-        "CustomerAccountView": "components/CustomerAccount/CustomerAccount.view",
-        "NotifyView": "components/Index/Notify.view",
-
-        //Views widgets
-        "WebSiteTrafficView": "components/Dashboard/WebSiteTraffic.view",
-
-        //Templates
-        "RightSidebarTemplate": "components/RightSideBar/rightsidebar.html",
-        "SignInTemplate": "views/templates/sign-in.html",
-        "SignUpTemplate": "views/templates/sign-up.html",
-        "LogoutTemplate": "views/templates/logout.html",
         "DashboardTemplate": "components/Dashboard/dashboard.html",
-        "ProfileTemplate": "components/Profile/profile.html",
-        "CustomerAccountTemplate": "components/CustomerAccount/customer-account.html",
-        "NotifyTemplate": "components/Index/notify.html",
+        "WebSiteTrafficModel": "components/Dashboard/WebSiteTraffic.model",
+        "WebSiteTrafficView": "components/Dashboard/WebSiteTraffic.view",
+        "WebSiteTrafficTemplate": "components/Dashboard/web-site-traffic.html",
+        //Dashboard
 
-        //Tempaltes widgets
-        "WebSiteTrafficTemplate": "components/Dashboard/web-site-traffic.html"
+        //Profile
+        "ProfileView": "components/Profile/Profile.view",
+        "ProfileTemplate": "components/Profile/profile.html",
+        //Profile
+
+        //CustomerAccount
+        "CustomerAccountView": "components/CustomerAccount/CustomerAccount.view",
+        "CustomerAccountTemplate": "components/CustomerAccount/customer-account.html",
+        //CustomerAccount
+
     },
     "shim": {
         "bootstrap": ["jquery"],
