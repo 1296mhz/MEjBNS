@@ -21,7 +21,7 @@ define(['jquery', 'underscore', 'backbone',
                 _.bindAll(this, 'render');
             },
             el: this.el,
-            model: app.models.leftMenu,
+            model: app.models.LeftSidebarModel,
             events: {},
             render: function () {
                 var _this = this;

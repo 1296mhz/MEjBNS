@@ -32,25 +32,21 @@ define([
         index: function () {
             this.navigate('', { trigger: true });
             app.models.LeftSidebarModel.set('currentPath', 'dashboard')
-          //  app.bus.trigger('LeftSidebarView:changeUrl', this.routes[Backbone.history.getFragment()]);
             app.views.DashboardView.show();
         },
         dashboard: function () {
             this.navigate('dashboard', { trigger: true });
             app.models.LeftSidebarModel.set('currentPath', 'dashboard')
-           // app.bus.trigger('LeftSidebarView:changeUrl', this.routes[Backbone.history.getFragment()]);
             app.views.DashboardView.show();
         },
         profile: function () {
             this.navigate('profile', { trigger: true });
             app.models.LeftSidebarModel.set('currentPath', 'profile')
-         //   app.bus.trigger('LeftSidebarView:changeUrl', this.routes[Backbone.history.getFragment()]);
             app.views.ProfileView.show();
         },
         customerAccount: function() {
             app.models.LeftSidebarModel.set('currentPath', 'customer-account')
             this.navigate('customer-account', { trigger: true });
-        //    app.bus.trigger('LeftSidebarView:changeUrl', this.routes[Backbone.history.getFragment()]);
             app.views.CustomerAccountView.show();
         }
     });
