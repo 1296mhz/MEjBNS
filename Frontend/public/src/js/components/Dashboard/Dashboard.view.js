@@ -13,10 +13,6 @@ define(['jquery', 'underscore', 'backbone',
             initialize: function () {
                 console.log("Initialize Dashboard view");
                 _.bindAll(this, 'render', 'show', 'fetchModel', 'updateForm')
-
-                // this.listenTo(this.model, 'change', this.render);
-                // this.model.fetch();
-                //app.bus.on('DashboardView:fetchModel', this.fetchModel)
             },
             el: this.el,
             model: new DashboardModel(),

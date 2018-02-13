@@ -39,75 +39,75 @@ require.config({
         "SocketioService": "services/Socketio.service",
         //Start --- Index
         //Views
-        "IndexView": "views/containerApplication/Index.view",
+        "IndexView": "components/Index/Index.view",
 
         //Templates
-        "IndexTemplate": "views/templates/index.html",
+        "IndexTemplate": "components/Index/index.html",
         //End --- Index
 
         //Start --- Navbar
         //Models
-        "NavbarModel": "models/Navbar.model",
+        "NavbarModel": "components/Index/Navbar.model",
         //Views
-        "NavbarView": "views/containerApplication/Navbar.view",
+        "NavbarView": "components/Index/Navbar.view",
         //Templates
-        "NavbarTemplate": "views/templates/navbar.html",
+        "NavbarTemplate": "components/Index/navbar.html",
         //End -- Navbar
 
         //Start --- Left Sidebar
         //Models
-        "LeftSidebarModel": "models/LeftSidebar.model",
-        "UserInfoModel": "models/UserInfo.model",
-        "LeftSidebarMenuItemModel": "models/LeftSidebarMenuItem.model",
-        "LeftSidebarFooter": "models/LeftSidebarFooter.model",
+        "LeftSidebarModel": "components/LeftSideBar/LeftSidebar.model",
+        "UserInfoModel": "components/LeftSideBar/UserInfo.model",
+        "LeftSidebarMenuItemModel": "components/LeftSideBar/LeftSidebarMenuItem.model",
+        "LeftSidebarFooter": "components/LeftSideBar/LeftSidebarFooter.model",
 
         //Collections
-        "LeftSidebarMenuCollection": "collections/LeftSidebarMenu.collection",
+        "LeftSidebarMenuCollection": "components/LeftSideBar/LeftSidebarMenu.collection",
 
         //Views
-        "LeftSidebarView": "views/containerApplication/LeftSidebar.view",
-        "UserInfoView": "views/containerApplication/UserInfo.view",
-        "LeftSidebarMenuView": "views/containerApplication/LeftSidebarMenu.view",
-        "LeftSidebarMenuItemView": "views/containerApplication/LeftSidebarMenuItem.view",
-        "LeftSidebarFooterView": "views/containerApplication/LeftSidebarFooter.view",
+        "LeftSidebarView": "components/LeftSideBar/LeftSidebar.view",
+        "UserInfoView": "components/LeftSideBar/UserInfo.view",
+        "LeftSidebarMenuView": "components/LeftSideBar/LeftSidebarMenu.view",
+        "LeftSidebarMenuItemView": "components/LeftSideBar/LeftSidebarMenuItem.view",
+        "LeftSidebarFooterView": "components/LeftSideBar/LeftSidebarFooter.view",
 
         //Templates
-        "LeftSidebarTemplate": "views/templates/left-side-bar.html",
-        "UserInfoTemplate": "views/templates/user-info.html",
-        "LeftSidebarMenuTemplate": "views/templates/left-sidebar-menu.html",
-        "LeftSidebarMenuItemTemplate": "views/templates/containerApplication/left-side-bar-menu-item.html",
-        "LeftSideBarFooterTemplate": "views/templates/left-side-bar-footer.html",
+        "LeftSidebarTemplate": "components/LeftSideBar/left-side-bar.html",
+        "UserInfoTemplate": "components/LeftSideBar/user-info.html",
+        "LeftSidebarMenuTemplate": "components/LeftSideBar/left-sidebar-menu.html",
+        "LeftSidebarMenuItemTemplate": "components/LeftSideBar/left-side-bar-menu-item.html",
+        "LeftSideBarFooterTemplate": "components/LeftSideBar/left-side-bar-footer.html",
         //End -- Left Sidebar
 
 
-        "AvatarFileModel": "models/AvatarFile.model",
-        "DashboardModel": "models/Dashboard.model",
-        "WebSiteTrafficModel": "models/WebSiteTraffic.model",
+        "AvatarFileModel": "components/Profile/AvatarFile.model",
+        "DashboardModel": "components/Dashboard/Dashboard.model",
+        "WebSiteTrafficModel": "components/Dashboard/WebSiteTraffic.model",
 
         //Right sidebar panel
-        "RightSidebarView": "views/containerApplication/RightSidebar.view",
+        "RightSidebarView": "components/RightSideBar/RightSidebar.view",
 
         //Work area
-        "DashboardView": "views/Dashboard.view",
-        "ProfileView": "views/Profile.view",
-        "CustomerAccountView": "views/CustomerAccount.view",
-        "NotifyView": "views/containerApplication/Notify.view",
+        "DashboardView": "components/Dashboard/Dashboard.view",
+        "ProfileView": "components/Profile/Profile.view",
+        "CustomerAccountView": "components/CustomerAccount/CustomerAccount.view",
+        "NotifyView": "components/Index/Notify.view",
 
         //Views widgets
-        "WebSiteTrafficView": "views/widgets/WebSiteTraffic.view",
+        "WebSiteTrafficView": "components/Dashboard/WebSiteTraffic.view",
 
         //Templates
-        "RightSidebarTemplate": "views/templates/rightsidebar.html",
+        "RightSidebarTemplate": "components/RightSideBar/rightsidebar.html",
         "SignInTemplate": "views/templates/sign-in.html",
         "SignUpTemplate": "views/templates/sign-up.html",
         "LogoutTemplate": "views/templates/logout.html",
-        "DashboardTemplate": "views/templates/dashboard.html",
-        "ProfileTemplate": "views/templates/profile.html",
-        "CustomerAccountTemplate": "views/templates/customer-account.html",
-        "NotifyTemplate": "views/templates/notify.html",
+        "DashboardTemplate": "components/Dashboard/dashboard.html",
+        "ProfileTemplate": "components/Profile/profile.html",
+        "CustomerAccountTemplate": "components/CustomerAccount/customer-account.html",
+        "NotifyTemplate": "components/Index/notify.html",
 
         //Tempaltes widgets
-        "WebSiteTrafficTemplate": "views/templates/widgets/web-site-traffic.html"
+        "WebSiteTrafficTemplate": "components/Dashboard/web-site-traffic.html"
     },
     "shim": {
         "bootstrap": ["jquery"],
