@@ -20,7 +20,7 @@ define([
     var initialize = function () {
         console.log("Init models");
         app.models.NavbarModel = new NavbarModel();
-        app.models.leftMenu = new LeftSidebarModel();
+        app.models.LeftSidebarModel = new LeftSidebarModel();
         app.models.UserInfoModel = new UserInfoModel();
         app.models.LeftSidebarMenuItemModel = new LeftSidebarMenuItemModel();
         app.models.LeftSidebarFooter = new LeftSidebarFooter();

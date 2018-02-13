@@ -35,6 +35,7 @@ var userSchema = mongoose.Schema({
                 message: '{VALUE} is not a valid email!'
             },
         },
+        imageBin: Buffer,
         image: String,
         password: String,
         createdAt: {type: Date, default: Date.now},

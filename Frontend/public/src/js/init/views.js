@@ -22,10 +22,8 @@ define([
         app.views.DashboardView = new DashboardView({el: $('dashboard-section')});
         app.views.ProfileView = new ProfileView({el: $('profile-section'), model: app.models.UserInfoModel });
         app.views.CustomerAccountView = new CustomerAccountView({el: $('customer-account-section')});
-
         app.views.DashboardView.render();
         app.views.DashboardView.render();
-        app.views.ProfileView.render();
         app.views.CustomerAccountView.render();
 
     }

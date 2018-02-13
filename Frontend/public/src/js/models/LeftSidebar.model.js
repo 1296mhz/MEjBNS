@@ -4,7 +4,9 @@
 define(['underscore', 'backbone'], function (_, Backbone) {
     "use strict";
     var LeftSidebarModel = Backbone.Model.extend({
-         urlRoot: "/api/v1/getLeftMenu"
+         defaults: {
+             currentPath: ""
+         }
     })
 
     return LeftSidebarModel

@@ -74,13 +74,15 @@ define(['jquery', 'waves', 'jquery-slimscroll'], function ($, Waves) {
                 $(val).next().slideToggle(0);
             });
 
+            /*
             app.bus.on('LeftSidebarView:changeUrl', function(data){
+                console.log("Hello")
                 console.log(data)
                 var $menuList = $('#left-sidebar-menu').children();
                // $menuList.removeClass();
                //  $('#' + data).addClass('active');
             });
-            
+            */
             //When page load
             $.each($('.menu .list li.active'), function (i, val) {
                 var $activeAnchors = $(val).find('a:eq(0)');

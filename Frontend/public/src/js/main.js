@@ -37,7 +37,6 @@ require.config({
         //Services
         // "AuthenticateService": "services/Authenticate.service",
         "SocketioService": "services/Socketio.service",
-
         //Start --- Index
         //Views
         "IndexView": "views/containerApplication/Index.view",

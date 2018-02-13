@@ -5,7 +5,6 @@ define(['jquery', 'underscore', 'backbone', 'text!LeftSidebarMenuItemTemplate'],
     function ($, _, Backbone, LeftSidebarMenuItemTemplate) {
         var LeftSidebarMenuItemView = Backbone.View.extend({
             initialize: function () {
-                console.log("Initialize LeftSidebarMenuItem View");
                 _.bindAll(this, 'render');
             },
             tagName: "li",

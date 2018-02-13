@@ -12,9 +12,12 @@ define(['jquery', 'underscore', 'backbone',
             initialize: function () {
                 console.log("Initialize LeftSidebar Menu view");
                 _.bindAll(this, 'render', 'fetchCollection');
-
-
                 this.listenTo(this.collection, 'all', this.render);
+
+                this.listenTo(this.model, 'change', function(m){
+                    var urlFragment = this.model.get('currentPath')
+                    $('#' + urlFragment + '-id').addClass('active');
+                });
                 this.fetchCollection();
             },
             el: this.el,
@@ -24,7 +27,6 @@ define(['jquery', 'underscore', 'backbone',
             fetchCollection: function(){
                 this.collection.fetch({
                     success: function(){
-                        console.log("Fetch collection complete")
                     }
                 });
             },
@@ -40,10 +42,9 @@ define(['jquery', 'underscore', 'backbone',
                     $('#left-sidebar-menu').append(itemMenuView.render().el)
                 }.bind(this))
 
-                app.bus.once('LeftSidebarView:changeUrl', function(urlFragment){
-                    console.log(urlFragment + '-id')
-                    $('#' + urlFragment + '-id').addClass('active');
-                })
+                $('#' + this.model.get('currentPath') + '-id').addClass('active');
+
+
 
                 return this;
             }

@@ -46,7 +46,6 @@ define(['jquery', 'underscore', 'backbone', 'UserInfoModel', 'AvatarFileModel', 
                     success: function (result) {
                         app.bus.trigger('UserInfoView:fetchModel');
                         app.bus.trigger('ProfileView:fetchModel');
-                        console.log(result)
                         app.bus.trigger('Notify', { text: result.get('message'), color: 'bg-green' });
                     },
                     error: function (err) {
@@ -54,7 +53,6 @@ define(['jquery', 'underscore', 'backbone', 'UserInfoModel', 'AvatarFileModel', 
                     }
                 });
                 fileAjax.on('progress', function (evt) {});
-
             },
             focusControl: function (e) {
                 "use strict";

@@ -32,7 +32,7 @@ define(['jquery', 'underscore', 'backbone',
                 this.$el.append(compiledTemplate());
 
                 app.views.UserInfo = new UserInfoView({el: $('user-info'), model: app.models.UserInfoModel});
-                app.views.LeftSidebarMenu = new LeftSidebarMenuView({el: $('sidebar-menu'), collection: app.collections.LeftSidebarMenuCollection });
+                app.views.LeftSidebarMenu = new LeftSidebarMenuView({el: $('sidebar-menu'), model: app.models.LeftSidebarModel, collection: app.collections.LeftSidebarMenuCollection });
                 app.views.LeftSidebarFooterView = new LeftSidebarFooterView({ el: $('sidebar-footer'), model: app.models.LeftSidebarFooter }).render();
             }
         });
