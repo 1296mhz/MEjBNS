@@ -13,7 +13,7 @@ var io = require('socket.io')(server, {
 var Cookies = require('cookies')
 var config = require('../config/database');
 var cookieParser = require('socket.io-cookie-parser');
-var sessionStore = require('../modules/sessionStore');
+var sessionStore = require('../modules/sessionStoreApp');
 
 var sharedSession = require("express-socket.io-session");
 

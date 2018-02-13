@@ -8,7 +8,7 @@ var config = require('../config/database');
 
 var store = new MongoDBStore(
     {
-        uri: config.dbSessionURI,
+        uri: config.dbSessionAppSocketURI,
         collection: 'sessions'
     });
 
@@ -17,4 +17,5 @@ store.on('error', function (error) {
     assert.ifError(error);
     assert.ok(false);
 });
+
 module.exports = store

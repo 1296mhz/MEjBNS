@@ -17,12 +17,13 @@ define(['socketio'], function (io) {
             console.log(data)
         });
 
-        io.socket.on('connect', function () {
-            console.log("I am connected")
+        io.socket.on('disconnect', function () {
+            console.log("I am disconnect")
+            app.bus.trigger('Notify', { text: "Нет ответа от сервера" , color: 'bg-yellow' });
         });
 
-        io.socket.on('token', function (data) {
-            app.bus.trigger('Notify', { text: data , color: 'bg-blue' });
+        io.socket.on('connect', function () {
+            console.log("I am connected")
         });
 
         io.socket.on('welcome', function (data) {

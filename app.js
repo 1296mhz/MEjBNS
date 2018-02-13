@@ -1,23 +1,28 @@
-var cluster = require('cluster');
-var express = require('express');
-var io = [];
-var cpuCount = require('os').cpus().length;
-var workers = [];
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var cookieParserSocketIO = require('socket.io-cookie-parser');
-var bodyParser = require('body-parser');
-var passport = require('passport');
-var request = require('request');
-var flash = require('connect-flash');
-var session = require('express-session');
-var sessionStore = require('./Backend/modules/sessionStore');
-var routes = require('./Backend/routes/index');
-var apiV1 = require('./Backend/routes/api-v1');
-var account = require('./Backend/routes/account');
-var config = require('./Backend/config/database');
+const cluster = require('cluster');
+const express = require('express');
+const io = [];
+const cpuCount = require('os').cpus().length;
+const workers = [];
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const cookieParserSocketIO = require('socket.io-cookie-parser');
+const bodyParser = require('body-parser');
+const passport = require('passport');
+const request = require('request');
+const flash = require('connect-flash');
+const session = require('express-session');
+const sessionStoreApp = require('./Backend/modules/sessionStoreApp');
+const routes = require('./Backend/routes/index');
+const apiV1 = require('./Backend/routes/api-v1');
+const account = require('./Backend/routes/account');
+const config = require('./Backend/config/database');
+
+const sessionStoreAppSocket = require('./Backend/modules/sessionStoreAppSocket');
+
+const querystring = require('querystring');
+
 const moment = require('moment');
 moment.locale('ru');
 //Database connect
@@ -42,16 +47,21 @@ if (cluster.isMaster) {
     }
 }
 
+
 if (cluster.isWorker) {
+
     var sessionID = null;
+    var connectSid = null;
+
     var app = express();
     app.listen(3000);
-
+    app.disable('x-powered-by');
     app.set('views', path.join(__dirname, 'Backend/views/'));
     app.set('view engine', 'ejs');
     app.disable('x-powered-by');
     //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-    // app.use(logger('combined'));
+    //app.use(logger('combined'));
+
     app.use(bodyParser.json({limit: '5mb'}));
     app.use(bodyParser.urlencoded({limit: '5mb', extended: false}));
     app.use(cookieParser());
@@ -62,7 +72,7 @@ if (cluster.isWorker) {
         cookie: {
             maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
         },
-        store: sessionStore
+        store: sessionStoreApp
     }));
 
     app.use(passport.initialize());
@@ -73,16 +83,20 @@ if (cluster.isWorker) {
     require('./Backend/modules/passport')(passport);
 
     //app.use(require('./Backend/modules/webTrafficCounter'))
-
     app.use(function (req, res, next) {
         sessionID = req.sessionID
-        console.log("Первый мидл: ", sessionID)
+        connectSid = req.cookies['connect.sid']
         next()
     })
+
     app.use('/', routes);
     app.use('/api/v1', apiV1);
 
     //------------------------------------------------------------------------------------//
+
+    eventEmitter.addListener('fuckyou', function(req,res){
+       // console.log(req.cookies['connect.sid'])
+    });
 
     app.use(function (req, res, next) {
         var err = new Error('Not Found');
@@ -116,15 +130,15 @@ if (cluster.isWorker) {
     io[worker_id] = require('socket.io')(serverSocket);
     serverSocket.listen(3030 + worker_id);
 
-    io[worker_id].use(cookieParserSocketIO());
+    io[worker_id].use(cookieParserSocketIO('shhsecret', {
+        decode: function (str) {
+            return str.replace('-', '_');
+        }
+    }));
 
     io[worker_id].use(authorization);
 
     io[worker_id].on('connection', function (socket) {
-
-        console.log("Сокет подключен: ")
-
-        socket.emit('token', sessionID)
 
         socket.emit('welcome', {message: "Добро пожвловать!</br> Сегодня: " + moment().format('LL')});
 
@@ -154,20 +168,36 @@ if (cluster.isWorker) {
 
     function authorization(socket, next) {
         console.log("Авторизация сессии")
-        console.log("Сессия для авторизации: ", sessionID)
 
-        sessionStore.get(sessionID, function (err, session) {
-            if (err) {
-                console.log("Ошибка: ", err)
-                throw err
-            };
-            console.log("Текущая сессия", session)
-            if (session === undefined) {
-                console.log("Сохраненная сессия")
-                console.log(sessionID)
-            }
-            next()
-        });
+        var socketConnectSid = querystring.unescape(socket.request.cookies['connect.sid'])
+
+
+        function getSessionStoreApp(s){
+            sessionStoreApp.get(s, function (err, session) {
+                console.log("Сессия найдена в хранилище")
+                if (err) {
+                    console.log("Ошибка: ", err)
+                    throw err
+                };
+                console.log("Текущая сессия", session)
+                if (session === undefined) {
+                    console.log("Сессия не найдена")
+                }
+                next()
+            });
+
+        }
+
+        if (socketConnectSid === connectSid) {
+            console.log("Сессии одинаковы")
+            getSessionStoreApp(connectSid)
+        } else {
+            console.log("Сессии не равна сессии web")
+            getSessionStoreApp(connectSid)
+            io[worker_id].on('connection', function (socket) {
+                socket.emit('disconnect', 'Ошибка')
+            })
+        }
     }
 
     //Processing message from worker
