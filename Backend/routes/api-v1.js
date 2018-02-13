@@ -8,8 +8,6 @@ var profileCtrlApi = require('../controllers/apiV1/profile');
 var accountCtrlApi = require('../controllers/apiV1/account');
 var getLeftMenu = require('../controllers/apiV1/leftMenu/getLeftMenuItems');
 
-
-
 routerApiV1.get('/', isLoggedIn, function( req, res, next){
     "use strict";
     res.json({

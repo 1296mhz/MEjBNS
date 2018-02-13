@@ -14,7 +14,7 @@ router.get('/login', function (req, res, next) {
         title: appConfig.title,
         titleB: appConfig.titleB,
         slogan: appConfig.slogan,
-        message: req.flash('loginMessage')
+        message: req.flash('loginMessage'),
     });
 });
 

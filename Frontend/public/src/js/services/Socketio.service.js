@@ -21,10 +21,17 @@ define(['socketio'], function (io) {
             console.log("I am connected")
         });
 
-
-        io.socket.on('myAuth', function (data) {
-
+        io.socket.on('token', function (data) {
+            app.bus.trigger('Notify', { text: data , color: 'bg-blue' });
         });
+
+        io.socket.on('welcome', function (data) {
+            app.bus.trigger('Notify', { text: data.message , color: 'bg-blue' });
+        });
+
+        io.socket.on('Page:reload', function(){
+            location.reload();
+        })
 
         io.socket.on('webTraffic', function (data) {
             app.bus.trigger('webTraffic', data)
