@@ -5,21 +5,16 @@ var validate = require('mongoose-validator');
 var alphaChar = [
     validate({
         validator: 'isLength',
-        arguments: [3, 35],
+        arguments: [3, 50],
         message: 'Name should be between 3 and 35 characters'
-    }),
-    // validate({
-    //     validator: 'isAlphanumeric',
-    //     passIfEmpty: true,
-    //     message: 'Name should contain alpha-numeric characters only'
-    // })
+    })
 ];
 
 var userSchema = mongoose.Schema({
     local: {
         name: {
             type: String,
-            unique: true,
+            unique: false,
             required: true,
             validate: alphaChar
         },

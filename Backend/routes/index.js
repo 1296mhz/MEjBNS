@@ -43,7 +43,6 @@ router.get('/logout', function (req, res) {
 
 router.get('/logout', function (req, res) {
     req.logout();
-    //res.redirect('/');
     res.render('logout.ejs', {message: "Thank's for used this app"});
 });
 

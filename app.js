@@ -94,10 +94,6 @@ if (cluster.isWorker) {
 
     //------------------------------------------------------------------------------------//
 
-    eventEmitter.addListener('fuckyou', function(req,res){
-       // console.log(req.cookies['connect.sid'])
-    });
-
     app.use(function (req, res, next) {
         var err = new Error('Not Found');
         err.status = 404;

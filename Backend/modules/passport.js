@@ -26,9 +26,12 @@ module.exports = function (passport) {
                     if (user) {
                         return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
                     } else {
+                        email = email.trim()
+                        var namesurname = req.body.namesurname.trim();
+
                         var newUser = new User();
                         newUser.local.email = email;
-                        newUser.local.name = req.body.namesurname;
+                        newUser.local.name = namesurname;
                         newUser.local.image = "user.png";
                         newUser.local.password = newUser.generateHash(password);
                         newUser.save(function (err) {
