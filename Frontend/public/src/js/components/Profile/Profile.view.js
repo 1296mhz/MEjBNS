@@ -85,7 +85,7 @@ define(['jquery', 'underscore', 'backbone', 'UserInfoModel', 'AvatarFileModel', 
                         app.bus.trigger('UserInfoView:fetchModel');
                         app.bus.trigger('Notify', { text: result.get('message'), color: 'bg-green' });
                     }, error: function (err) {
-                        app.bus.trigger('Notify', { text: "Avatar update error!" , color: 'bg-red'});
+                        app.bus.trigger('Notify', { text: "Update error!" , color: 'bg-red'});
                     }
                 })
             },
