@@ -9,20 +9,6 @@ var _ = require('underscore');
 var resizer = require('node-image-resizer');
 var config = require('../../config/config.json');
 
-exports.getProfile = async function (req, res, next) {
-
-    var profileDoc = {}
-    await User.findOne({_id: req.user._id}, function (err, doc) {
-        profileDoc._id = doc._id;
-        profileDoc.name = doc.local.name;
-        profileDoc.email = doc.local.email;
-        profileDoc.image = config.avatarImagesThumbPublic + 'small_' + doc.local.image
-        return profileDoc
-    });
-
-    await res.json(profileDoc)
-};
-
 exports.getProfileById = async function (req, res, next) {
 
     var profileDoc = {}
@@ -36,10 +22,10 @@ exports.getProfileById = async function (req, res, next) {
 
     await res.json(profileDoc)
 };
+
 exports.updateProfile = function (req, res, next) {
 
     var _id = mongoose.mongo.ObjectId(req.params.id);
-
 
     console.log(_id)
     var userId = String(req.user._id)
@@ -56,7 +42,6 @@ exports.updateProfile = function (req, res, next) {
     } else {
         res.json({result: "error"})
     }
-
 };
 
 var storage = multer.diskStorage({
@@ -95,7 +80,6 @@ exports.uploadImageProfile = function (req, res, next) {
         if (err) {
             return
         }
-
         await resizer( process.cwd() + config.avatarImages + req.file.filename, setup);
         await res.json({message: "Avatar update completed!"});
     })

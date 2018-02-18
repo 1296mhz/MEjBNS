@@ -90,7 +90,6 @@ define(['jquery', 'underscore', 'backbone', 'UserInfoModel', 'AvatarFileModel', 
                 })
             },
             render: function () {
-
                 var compiledTemplate = _.template(ProfileTemplate);
                 this.$el.empty();
                 this.$el.append(compiledTemplate(this.model.toJSON()));
